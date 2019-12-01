@@ -9,10 +9,14 @@ function useLocalStorageState(key, defaultVal) {
     } catch(e) {
       value = defaultVal;
     }
+    console.log("USing value is ", value)
     return value;
   })
 
+  console.log("STATE is ", state);
+
   useEffect(() => {
+    console.log("calling use effect with ", state);
     window.localStorage.setItem(key, JSON.stringify(state));
   }, [state])
 

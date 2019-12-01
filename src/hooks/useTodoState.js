@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 import useLocalStorageState from "./useLocalStorageState";
 
 function useTodoState() {
-  let initialTodo = JSON.parse(window.localStorage.getItem('todos') || "[]")
-  // let initialTodo = [
-  //   { id: 1234, task: "This is the first todo", completed: false },
-  //   { id: 1235, task: "This is the second todo", completed: false}
-  // ];
+  let initialTodo = [
+    { id: 1234, task: "This is the first todo", completed: false },
+    { id: 1235, task: "This is the second todo", completed: false }
+  ];
+  
   let [todos, setTodos] = useLocalStorageState("todos", initialTodo);
 
   let addTodo = (task) => {
