@@ -8,7 +8,7 @@ import Todo from './Todo'
 function TodoList(props) {
 
   let { todos, editTodo, removeTodo } = props;
-  if(todos.length > 0) {
+  if (todos.length > 0) {
     return (
       <Paper>
         <List>
@@ -21,7 +21,7 @@ function TodoList(props) {
                   editTodo={editTodo}
                   removeTodo={removeTodo}
                 />
-               {!!(todos.length -i-1) && <Divider/>}
+                {!!(todos.length - i - 1) && <Divider />}
               </>
             )
           })}

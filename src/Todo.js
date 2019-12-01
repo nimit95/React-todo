@@ -14,42 +14,42 @@ function Todo(props) {
   let { todo, editTodo, removeTodo } = props;
   let [isEditing, toggleState] = useToggleState();
   let [task, handleChange, reset] = useInputState(todo.task);
-  
+
   console.log("rendering todo ", todo, task);
   let removeTodoWithId = () => {
     console.log("removing todo with id, ", todo)
     removeTodo(todo.id);
-  } 
+  }
   let todoRender = (
-    !isEditing ? 
-      <p>{todo.task}</p>: 
-      <form 
-        onSubmit = {(e) => {
-            e.preventDefault();
-            console.log("CALLING EDIT TODO");
-            editTodo(todo.id, task);
-            toggleState()
-          }}
+    !isEditing ?
+      <p>{todo.task}</p> :
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("CALLING EDIT TODO");
+          editTodo(todo.id, task);
+          toggleState()
+        }}
       >
-        <TextField 
-          onChange={handleChange} 
-          value={task} 
-          fullWidth 
+        <TextField
+          onChange={handleChange}
+          value={task}
+          fullWidth
           autoFocus
         />
       </form>
   );
   return (
-    <ListItem key={todo.id} style={{ height:"64px" }}>
-      <Checkbox checked={todo.completed} tabIndex={-1}/>
+    <ListItem key={todo.id} style={{ height: "64px" }}>
+      <Checkbox checked={todo.completed} tabIndex={-1} />
       <ListItemText>
         {todoRender}
       </ListItemText>
       <IconButton onClick={removeTodoWithId}>
-        <DeleteIcon/>
+        <DeleteIcon />
       </IconButton>
       <IconButton onClick={toggleState}>
-        <EditIcon/>
+        <EditIcon />
       </IconButton>
     </ListItem>
   )

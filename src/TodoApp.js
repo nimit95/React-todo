@@ -8,27 +8,27 @@ import Grid from '@material-ui/core/Grid'
 import useTodoState from './hooks/useTodoState'
 
 function TodoApp() {
-  
-  let { todos, addTodo, removeTodo, editTodo, toggleTodo} = useTodoState()
+
+  let { todos, addTodo, removeTodo, editTodo, toggleTodo } = useTodoState()
   return (
-    <Paper 
+    <Paper
       style={{
         padding: 0,
         margin: 0,
-        height:"100vh",
+        height: "100vh",
         backgroundColor: "#fafafa"
       }}
       elevation={0}
     >
-      <AppBar position="static" color="primary" style={{height: "64px"}}>
-        <Toolbar> 
+      <AppBar position="static" color="primary" style={{ height: "64px" }}>
+        <Toolbar>
           <Typography>Todos with hooks</Typography>
         </Toolbar>
       </AppBar>
       <Grid container justify="center" style={{ marginTop: "2rem" }}>
         <Grid item lg={4} sm={11} md={8}>
-          <TodoForm addTodo={addTodo}/>
-          <TodoList todos={todos} editTodo={editTodo} removeTodo={removeTodo} toggleTodo={toggleTodo}/>
+          <TodoForm addTodo={addTodo} />
+          <TodoList todos={todos} editTodo={editTodo} removeTodo={removeTodo} toggleTodo={toggleTodo} />
         </Grid>
       </Grid>
     </Paper>
