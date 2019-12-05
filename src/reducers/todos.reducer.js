@@ -1,7 +1,4 @@
 import uuid from 'uuid'
-import {useEffect, useState} from 'react'
-import useLocalStorageState from "../hooks/useLocalStorageState";
-
 
 let reducer = (state, action) => {
   switch (action.type) {
