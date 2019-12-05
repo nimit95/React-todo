@@ -14,28 +14,28 @@ function useTodoState() {
   let addTodo = (task) => {
     let newTodos = [...todos, { id: uuid(), task: task, completed: false }];
     setTodos(newTodos);
-  }
+  };
   let editTodo = (id, task) => {
     console.log("COMING IN EDIT ", todos);
     let newTodos = todos.map(todo => {
-      return todo.id == id ? { ...todo, task: task } : todo;
-    })
+      return todo.id === id ? { ...todo, task: task } : todo;
+    });
     console.log("SETTING NEW ", newTodos);
     setTodos(newTodos);
-  }
+  };
   let removeTodo = (id) => {
     let newTodos = todos.filter(todo => {
-      return todo.id != id
-    })
+      return todo.id !== id
+    });
     console.log("Removed todos are", newTodos);
     setTodos(newTodos);
-  }
+  };
   let toggleTodo = (id) => {
     let newTodos = todos.map(todo => {
-      return todo.id == id ? { ...todo, completed: !todo.completed } : todo;
-    })
+      return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
+    });
     setTodos(newTodos);
-  }
+  };
   return {
     todos,
     addTodo,

@@ -1,33 +1,34 @@
-import React, { useState } from "react"
+import React, {useContext, useState} from "react"
 import TextField from "@material-ui/core/TextField";
 import useInputState from './hooks/useInputState'
-import { Checkbox } from "@material-ui/core";
+import {Checkbox} from "@material-ui/core";
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import useToggleState from './hooks/useToggleState'
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import IconButton from "@material-ui/core/IconButton";
+import {TodosContext} from "./context/todos.context";
 
 function Todo(props) {
-  let { todo, editTodo, removeTodo } = props;
+  let {todo} = props;
+  let {dispatch} = useContext(TodosContext);
   let [isEditing, toggleState] = useToggleState();
   let [task, handleChange, reset] = useInputState(todo.task);
 
   console.log("rendering todo ", todo, task);
   let removeTodoWithId = () => {
     console.log("removing todo with id, ", todo)
-    removeTodo(todo.id);
-  }
+    dispatch({type: "REMOVE", id: todo.id});
+  };
   let todoRender = (
     !isEditing ?
       <p>{todo.task}</p> :
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("CALLING EDIT TODO");
-          editTodo(todo.id, task);
+          console.log("CALLING EDIT TODO", task);
+          dispatch({type: "EDIT", id: todo.id, task: task});
           toggleState()
         }}
       >
@@ -40,16 +41,16 @@ function Todo(props) {
       </form>
   );
   return (
-    <ListItem key={todo.id} style={{ height: "64px" }}>
-      <Checkbox checked={todo.completed} tabIndex={-1} />
+    <ListItem key={todo.id} style={{height: "64px"}}>
+      <Checkbox checked={todo.completed} tabIndex={-1}/>
       <ListItemText>
         {todoRender}
       </ListItemText>
       <IconButton onClick={removeTodoWithId}>
-        <DeleteIcon />
+        <DeleteIcon/>
       </IconButton>
       <IconButton onClick={toggleState}>
-        <EditIcon />
+        <EditIcon/>
       </IconButton>
     </ListItem>
   )

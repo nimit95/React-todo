@@ -8,7 +8,7 @@ import { TodosContext } from "./context/todos.context";
 
 function TodoList(props) {
 
-  let { todos, editTodo, removeTodo } = useContext(TodosContext);
+  let { todos } = useContext(TodosContext);
   console.log("todos are " + todos)
   if (todos.length) {
     return (
@@ -20,8 +20,6 @@ function TodoList(props) {
               <React.Fragment key={todo.id}>
                 <Todo
                   todo={todo}
-                  editTodo={editTodo}
-                  removeTodo={removeTodo}
                 />
                 {!!(todos.length - i - 1) && <Divider />}
               </React.Fragment>
